@@ -12,7 +12,6 @@ contract ERC20Basic {
 
 library SafeMath {
 
-
   function mul(uint256 a, uint256 b) internal pure returns (uint256) {
     if (a == 0) {
       return 0;
@@ -22,7 +21,6 @@ library SafeMath {
     return c;
   }
 
-
   function div(uint256 a, uint256 b) internal pure returns (uint256) {
     
     uint256 c = a / b;
@@ -30,12 +28,10 @@ library SafeMath {
     return c;
   }
 
-
   function sub(uint256 a, uint256 b) internal pure returns (uint256) {
     assert(b <= a);
     return a - b;
   }
-
 
   function add(uint256 a, uint256 b) internal pure returns (uint256) {
     uint256 c = a + b;
@@ -43,7 +39,6 @@ library SafeMath {
     return c;
   }
 }
-
 
 contract BasicToken is ERC20Basic {
   using SafeMath for uint256;
@@ -56,12 +51,10 @@ contract BasicToken is ERC20Basic {
     return totalSupply_;
   }
 
-
   function transfer(address _to, uint256 _value) public returns (bool) {
     require(_to != address(0));
     require(_value <= balances[msg.sender]);
 
-    
     balances[msg.sender] = balances[msg.sender].sub(_value);
     balances[_to] = balances[_to].add(_value);
     Transfer(msg.sender, _to, _value);
@@ -81,12 +74,9 @@ contract ERC20 is ERC20Basic {
   event Approval(address indexed owner, address indexed spender, uint256 value);
 }
 
-
-
 contract StandardToken is ERC20, BasicToken {
 
   mapping (address => mapping (address => uint256)) internal allowed;
-
 
   function transferFrom(address _from, address _to, uint256 _value) public returns (bool) {
     require(_to != address(0));
@@ -129,14 +119,12 @@ contract StandardToken is ERC20, BasicToken {
 
 }
 
-
 contract TEST is StandardToken {
 
 	string public name = 'TEST';
 	string public symbol = 'TEST';
 	uint8 public decimals = 18;
 	uint public INITIAL_SUPPLY = 100000000000000000000000000;
-
 	
 	function TEST() public {
 	  totalSupply_ = INITIAL_SUPPLY;
